@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MTS Security | Cámaras, alarmas y seguridad electrónica</title>
+<meta name="description" content="MTS Security: soluciones TI e instalaciones de seguridad electrónica. Cámaras de seguridad, alarmas, control de acceso y automatización con cobertura en todo Chile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sitio oscuro de una columna, hero a pantalla con imagen de fondo, bloques con rótulo mono + punto naranjo, carrusel de portafolio, WhatsApp flotante. */
+:root {
+  --bg: #0E1626;
+  --bg-2: #121C2F;
+  --card: #141F33;
+  --ink: #F2F5FA;
+  --muted: #A3AFC2;
+  --line: #26334B;
+  --accent: #EE6A2F;
+  --accent-ink: #FFFFFF;
+  --wa: #25D366;
+  --hero-shade: rgba(9, 14, 25, .72);
+  --f-head: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --wrap: 1180px;
+  color-scheme: dark;
+}
+:root[data-mts="dark"] {
+  --bg: #0E1626; --bg-2: #121C2F; --card: #141F33; --ink: #F2F5FA; --muted: #A3AFC2;
+  --line: #26334B; --accent: #EE6A2F; --hero-shade: rgba(9, 14, 25, .72);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: #0E1626; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-head); margin: 0; line-height: 1.12; text-wrap: balance; }
+h1 { font-size: clamp(38px, 5.6vw, 68px); font-weight: 600; letter-spacing: -.01em; }
+h2 { font-size: clamp(30px, 4vw, 46px); font-weight: 600; }
+h3 { font-size: 20px; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.lead { color: var(--muted); font-size: 18px; max-width: 58ch; }
+
+/* ---------- header ---------- */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: #0E1626; border-bottom: 1px solid #26334B; color: #F2F5FA; }
+.top .wrap { display: flex; align-items: center; gap: 20px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 12px; white-space: nowrap; text-decoration: none; font-family: var(--f-head); font-weight: 600; font-size: 21px; letter-spacing: .01em; }
+.brand img { width: 50px; height: auto; display: block; }
+.nav { display: flex; gap: 26px; margin-left: auto; }
+.nav a { text-decoration: none; font-size: 15px; color: #A3AFC2; }
+.nav a:hover { color: #FFFFFF; }
+.top-actions { display: flex; gap: 10px; }
+.icon-btn { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 10px; border: 1px solid #33425E; background: transparent; color: #F2F5FA; cursor: pointer; }
+.icon-btn:hover { border-color: #5A6B8A; }
+.icon-btn svg { width: 22px; height: 22px; }
+#menuBtn { display: none; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--f-body); font-weight: 600; font-size: 17px; padding: 16px 28px; border-radius: 6px; border: 1.5px solid transparent; text-decoration: none; cursor: pointer; transition: transform .15s, background .15s, border-color .15s; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn-primary { background: var(--accent); color: #0E1626; }
+.btn-primary:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--accent) 88%, #fff); }
+.btn-ghost { border-color: rgba(255,255,255,.35); color: #F2F5FA; background: transparent; }
+.btn-ghost:hover { border-color: #fff; }
+@media (max-width: 900px) {
+  .nav { display: none; }
+  #menuBtn { display: grid; }
+  .top-actions { margin-left: auto; }
+  .top .cta-top { display: none; }
+}
+[hidden] { display: none !important; }
+.drawer { position: fixed; inset: 0; z-index: 70; background: rgba(5, 9, 17, .6); display: flex; justify-content: flex-end; }
+.drawer-panel { width: min(320px, 86vw); height: 100%; background: #0E1626; border-left: 1px solid #26334B; padding: calc(20px + env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) 24px 24px; display: grid; align-content: start; gap: 6px; color: #F2F5FA; }
+.drawer-panel .icon-btn { justify-self: end; margin-bottom: 12px; }
+.drawer-panel a { text-decoration: none; font-family: var(--f-head); font-size: 24px; padding: 10px 0; border-bottom: 1px solid #26334B; }
+.drawer-panel .btn { margin-top: 18px; font-family: var(--f-body); font-size: 16px; border-bottom: 0; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; overflow: hidden; color: #F2F5FA; background: #0B1220; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg canvas { width: 100%; height: 100%; display: block; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--hero-shade) 0%, rgba(9,14,25,.55) 55%, rgba(9,14,25,.35) 100%), linear-gradient(0deg, #0B1220 0%, transparent 30%); }
+.hero .wrap { position: relative; display: grid; gap: 28px; padding-block: 64px 40px; }
+.pill { justify-self: start; display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 10px 20px; font-family: var(--f-mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; background: rgba(14, 22, 38, .4); backdrop-filter: blur(4px); }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.hero h1 { max-width: 15ch; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lead { color: #C9D2E0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+.scroll-hint { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #A3AFC2; text-decoration: none; margin-top: 16px; }
+.scroll-hint svg { width: 16px; height: 16px; animation: bob 2s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+.stats { position: relative; border-top: 1px solid rgba(255,255,255,.14); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-block: 32px 40px; }
+.stat b { display: block; font-family: var(--f-head); font-size: clamp(28px, 3.4vw, 40px); font-weight: 600; line-height: 1.1; }
+.stat span { color: #A3AFC2; font-size: 15px; }
+@media (max-width: 760px) { .stats .wrap { grid-template-columns: repeat(2, 1fr); } .hero .wrap { padding-block: 40px 28px; } }
+
+/* ---------- secciones ---------- */
+section.block { padding-block: 88px; }
+section.alt { background: var(--bg-2); }
+.sec-head { display: grid; gap: 16px; margin-bottom: 44px; }
+
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.svc { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: grid; gap: 12px; align-content: start; min-width: 0; transition: border-color .2s, transform .2s; }
+.svc:hover { border-color: var(--accent); transform: translateY(-2px); }
+.svc-ico { width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+.svc-ico svg { width: 26px; height: 26px; }
+.svc p { color: var(--muted); font-size: 15px; }
+@media (max-width: 960px) { .services { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .services { grid-template-columns: 1fr; } }
+
+/* portafolio */
+.carousel { display: grid; grid-auto-flow: column; grid-auto-columns: min(400px, 82%); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+.carousel::-webkit-scrollbar { display: none; }
+.work { scroll-snap-align: start; background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.work-img { aspect-ratio: 4 / 3; max-width: 100%; position: relative; background: #0B1220; }
+.work-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mv { position: absolute; inset: 0; display: grid; gap: 3px; padding: 3px; background: #05080F; }
+.mv i { position: relative; background: linear-gradient(160deg, #2B3B57, #172338 60%, #23324D); }
+.mv i::after { content: attr(data-c); position: absolute; left: 5px; top: 3px; font: 500 9px var(--f-mono); color: rgba(255,255,255,.75); letter-spacing: .05em; }
+.mv i:nth-child(3n) { background: linear-gradient(200deg, #3A4A3A, #1E2A24 70%); }
+.mv i:nth-child(4n) { background: linear-gradient(120deg, #4A3F35, #241E1A 70%); }
+.mv-tag { position: absolute; right: 10px; bottom: 10px; font: 500 11px var(--f-mono); color: #F2F5FA; background: rgba(0,0,0,.55); padding: 4px 8px; border-radius: 4px; }
+.work-body { padding: 24px; display: grid; gap: 10px; align-content: start; }
+.work-body p { color: var(--muted); font-size: 15px; }
+.car-ctrl { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+.car-ctrl button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.car-ctrl button:hover { border-color: var(--accent); }
+.car-ctrl svg { width: 18px; height: 18px; }
+
+/* proceso */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 2px solid var(--line); padding-top: 20px; display: grid; gap: 8px; align-content: start; }
+.steps li::before { content: "PASO 0" counter(s); font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; color: var(--accent); }
+.steps li:first-child { border-top-color: var(--accent); }
+.steps p { color: var(--muted); font-size: 15px; }
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* contacto */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+.contact-info { display: grid; gap: 22px; min-width: 0; }
+.info { display: grid; gap: 16px; margin: 0; }
+.info div { display: grid; gap: 2px; border-left: 2px solid var(--accent); padding-left: 14px; }
+.info dt { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.info dd { margin: 0; font-size: 18px; font-weight: 500; user-select: all; }
+.pend { color: #F2B84B; }
+form.req { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: grid; gap: 16px; min-width: 0; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
+label { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+input, select, textarea { font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; width: 100%; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+textarea { min-height: 110px; resize: vertical; }
+.form-msg { font-size: 14px; min-height: 1.4em; color: var(--wa); }
+.form-msg.err { color: #FF8A7A; }
+.form-msg a { color: var(--accent); font-weight: 600; }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+footer { background: #0A101C; color: #A3AFC2; }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding-block: 32px calc(32px + 70px); font-size: 14px; }
+footer .brand { color: #F2F5FA; font-size: 18px; }
+footer .brand img { width: 40px; }
+
+.wa-float { position: fixed; z-index: 40; right: max(20px, calc(env(safe-area-inset-right, 0px) + 12px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: 64px; height: 64px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; box-shadow: 0 10px 28px -8px rgba(37, 211, 102, .6); text-decoration: none; border: 0; cursor: pointer; }
+.wa-float::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--wa); opacity: .4; animation: ring 2.4s ease-out infinite; }
+@keyframes ring { from { transform: scale(.9); opacity: .5; } to { transform: scale(1.25); opacity: 0; } }
+.wa-float svg { width: 30px; height: 30px; }
+</style>
+
+<meta property="og:title" content="MTS Security · Seguridad electrónica">
+<meta property="og:description" content="Soluciones TI e instalaciones de seguridad electrónica: cámaras, alarmas, control de acceso y automatización. Cobertura en todo Chile.">
+<meta property="og:url" content="https://mts-security.cl/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://mts-security.cl/">
+<link rel="icon" type="image/webp" href="logo.webp">
+<link rel="apple-touch-icon" href="logo.webp">
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="MTS Security, inicio"><img src="logo.webp" alt="Logo MTS Security">MTS SECURITY</a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="btn btn-primary cta-top" href="#contacto" style="padding:12px 20px;font-size:15px">Cotizar gratis</a>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer-panel" role="dialog" aria-label="Menú">
+    <button class="icon-btn" id="closeBtn" type="button" aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <a href="#servicios">Servicios</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#proceso">Cómo trabajamos</a>
+    <a href="#contacto">Contacto</a>
+    <a class="btn btn-primary" href="#contacto">Solicitar cotización gratis</a>
+  </div>
+</div>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="hero-bg"><canvas id="heroCanvas" aria-hidden="true"></canvas></div>
+    <div class="wrap">
+      <span class="pill">Cobertura en todo Chile</span>
+      <h1>Una intrusión ocurre en segundos. <em>Verla a tiempo</em> lo cambia todo.</h1>
+      <p class="lead">Soluciones TI e instalaciones de seguridad electrónica para hogares, empresas y comunidades. Diseñamos, implementamos y mantenemos sistemas confiables, con el respaldo de un equipo técnico especializado.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contacto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1121 11.5z"/></svg>Solicitar cotización gratis</a>
+        <a class="btn btn-ghost" href="#servicios">Ver servicios <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <a class="scroll-hint" href="#servicios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>Scroll para explorar</a>
+    </div>
+    <div class="stats">
+      <div class="wrap">
+        <div class="stat"><b>24/7</b><span>Monitoreo desde donde quiera que estés</span></div>
+        <div class="stat"><b>Todo Chile</b><span>Cobertura a nivel nacional</span></div>
+        <div class="stat"><b>$0</b><span>Visita técnica y cotización</span></div>
+        <div class="stat"><b>Soporte</b><span>Especializado ante cualquier falla</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="servicios">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Servicios</span>
+        <h2>Todo lo que necesitas para proteger tu espacio</h2>
+        <p class="lead">Diseñamos la solución, instalamos los equipos y te dejamos todo funcionando en tu celular.</p>
+      </div>
+      <div class="services">
+        <article class="svc"><div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7l12-3 2 6-12 3z"/><path d="M17 8l4-1M8 13l1 4H5M5 14v6"/></svg></div><h3>Cámaras de seguridad</h3><p>Cámaras de seguridad de alta definición y calidad, análogas o IP, con visión nocturna, grabación continua y acceso remoto desde tu celular.</p></article>
+        <article class="svc"><div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M18 16V11a6 6 0 10-12 0v5l-2 3h16z"/><path d="M10 21a2 2 0 004 0"/></svg></div><h3>Alarmas</h3><p>Sensores de movimiento y apertura, sirenas y aviso inmediato a tu teléfono cuando se activa una zona.</p></article>
+        <article class="svc"><div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/></svg></div><h3>Control de acceso</h3><p>Tarjetas, huella, reconocimiento facial y citofonía digital, con registro de quién entra y a qué hora.</p></article>
+        <article class="svc"><div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-8h10v8M7 16h10"/></svg></div><h3>Automatización</h3><p>Portones, barreras y cerraduras eléctricas que puedes abrir desde el celular o con control remoto.</p></article>
+        <article class="svc"><div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 21v-9"/><path d="M8.5 8.5a5 5 0 017 0M5.5 5.5a9 9 0 0113 0"/><circle cx="12" cy="11" r="1"/></svg></div><h3>Redes y enlaces</h3><p>Gabinetes, switches PoE y antenas inalámbricas para llevar señal a cámaras lejanas sin romper muros.</p></article>
+        <article class="svc"><div class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div><h3>Mantención y soporte</h3><p>Visitas preventivas, limpieza de equipos, revisión de grabaciones y solución rápida ante cualquier falla.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="portafolio">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Portafolio</span>
+        <h2>Instalaciones que ya protegemos</h2>
+        <p class="lead">Casas, locales y bodegas donde ya instalamos cámaras, alarmas o control de acceso.</p>
+      </div>
+      <div class="carousel" id="carousel" tabindex="0" aria-label="Trabajos realizados">
+        <article class="work">
+          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(4,1fr)"><i data-c="CAM01"></i><i data-c="CAM02"></i><i data-c="CAM03"></i><i data-c="CAM04"></i><i data-c="CAM05"></i><i data-c="CAM06"></i><i data-c="CAM07"></i><i data-c="CAM08"></i><i data-c="CAM09"></i><i data-c="CAM10"></i><i data-c="CAM11"></i><i data-c="CAM12"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
+          <div class="work-body"><h3>Central de Monitoreo Multipantalla</h3><p>Configuración de matrices de cámaras para la supervisión simultánea de múltiples puntos críticos, optimizando la capacidad de reacción ante cualquier evento.</p></div>
+        </article>
+        <article class="work">
+          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(2,1fr)"><i data-c="ACCESO"></i><i data-c="PATIO"></i><i data-c="ESTAC."></i><i data-c="LIVING"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
+          <div class="work-body"><h3>Monitoreo residencial y vehicular</h3><p>Integración de cámaras interiores y exteriores con vista del acceso vehicular, para control total desde el celular.</p></div>
+        </article>
+        <article class="work">
+          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(3,1fr)"><i data-c="P1"></i><i data-c="P2"></i><i data-c="P3"></i><i data-c="P4"></i><i data-c="P5"></i><i data-c="P6"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
+          <div class="work-body"><h3>Estacionamientos y puntos ciegos</h3><p>Cámaras en postes con gabinete, switch y enlace inalámbrico, integradas al sistema de grabación existente.</p></div>
+        </article>
+        <article class="work">
+          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(2,1fr)"><i data-c="BODEGA 1"></i><i data-c="BODEGA 2"></i><i data-c="ANDÉN"></i><i data-c="OFICINA"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
+          <div class="work-body"><h3>Bodegas y locales comerciales</h3><p>Cobertura de accesos, cajas y zonas de carga, con alarma conectada y aviso inmediato fuera de horario.</p></div>
+        </article>
+      </div>
+      <div class="car-ctrl">
+        <button type="button" id="prevBtn" aria-label="Trabajo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" id="nextBtn" aria-label="Trabajo siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="proceso">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2>De la visita a tu celular, en cuatro pasos</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Visita técnica</h3><p>Vamos al lugar sin costo, revisamos puntos críticos, energía y red.</p></li>
+        <li><h3>Cotización</h3><p>Te enviamos una propuesta clara, con los equipos y cantidades que tu espacio necesita.</p></li>
+        <li><h3>Instalación</h3><p>Cableado, gabinetes y montaje ordenado y rotulado.</p></li>
+        <li><h3>Puesta en marcha</h3><p>Configuramos todo, lo dejamos en tu celular y te enseñamos a usarlo.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block alt" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">Contacto</span>
+        <h2>Solicita tu cotización gratis</h2>
+        <p class="lead">Cuéntanos qué necesitas proteger y te contactamos para coordinar la visita técnica.</p>
+        <dl class="info">
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/56974425801" target="_blank" rel="noopener" style="text-decoration:none">+56 9 7442 5801</a></dd></div>
+          <div><dt>Correo</dt><dd>contacto@mts-securitychile.cl</dd></div>
+        </dl>
+      </div>
+      <form class="req" id="reqForm" novalidate>
+        <div class="row2">
+          <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" autocomplete="name" placeholder="Ej. Carolina Pérez"></label>
+          <label for="f-comuna">Comuna<input id="f-comuna" name="comuna" placeholder="Ej. Las Condes"></label>
+        </div>
+        <div class="row2">
+          <label for="f-tipo">Tipo de lugar<select id="f-tipo" name="tipo"><option>Casa</option><option>Local comercial</option><option>Bodega</option><option>Empresa</option><option>Condominio</option></select></label>
+          <label for="f-serv">Servicio<select id="f-serv" name="serv"><option>Cámaras de seguridad</option><option>Alarmas</option><option>Control de acceso</option><option>Automatización</option><option>Redes y enlaces</option><option>Mantención y soporte</option></select></label>
+        </div>
+        <label for="f-msg">Detalle<textarea id="f-msg" name="msg" placeholder="Ej. Necesito 4 cámaras para el patio y la entrada."></textarea></label>
+        <button class="btn btn-primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1121 11.5z"/></svg>Enviar por WhatsApp</button>
+        <p class="form-msg" id="formMsg" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="logo.webp" alt="">MTS SECURITY</a>
+    <span>MTS SECURITY SPA · Cobertura en todo Chile</span>
+    <span>contacto@mts-securitychile.cl · +56 9 7442 5801 · © 2026</span>
+  </div>
+</footer>
+
+<button class="wa-float" id="waFloat" type="button" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1121 11.5z"/></svg>
+</button>
+
+<script>
+// Número de WhatsApp de MTS (solo dígitos, con 56). Ej: "56912345678"
+const WHATSAPP = "56974425801";
+
+/* ---- menú móvil ---- */
+(function () {
+  const d = document.getElementById("drawer"), open = document.getElementById("menuBtn"), close = document.getElementById("closeBtn");
+  const set = v => { d.hidden = !v; open.setAttribute("aria-expanded", v); if (v) close.focus(); };
+  open.addEventListener("click", () => set(true));
+  close.addEventListener("click", () => set(false));
+  d.addEventListener("click", e => { if (e.target === d || e.target.tagName === "A") set(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !d.hidden) set(false); });
+})();
+
+/* ---- fondo del hero: vista aérea nocturna de techos ---- */
+(function () {
+  const c = document.getElementById("heroCanvas"), ctx = c.getContext("2d");
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  function draw() {
+    const r = c.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = r.width * dpr; c.height = r.height * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seed = 7;
+    ctx.fillStyle = "#151D29"; ctx.fillRect(0, 0, r.width, r.height);
+    ctx.save(); ctx.translate(r.width * .55, r.height * .45); ctx.rotate(-0.42);
+    const W = r.width * 1.8, H = r.height * 1.8;
+    // calles
+    for (let y = -H / 2; y < H / 2; y += 150) {
+      for (let x = -W / 2; x < W / 2; x += 130) {
+        const bw = 60 + rnd() * 55, bh = 50 + rnd() * 80;
+        const tone = 36 + rnd() * 40;
+        ctx.fillStyle = `rgb(${tone + 10},${tone + 8},${tone + 6})`;
+        ctx.fillRect(x, y, bw, bh);
+        ctx.strokeStyle = "rgba(0,0,0,.45)"; ctx.lineWidth = 2; ctx.strokeRect(x, y, bw, bh);
+        // cumbrera
+        ctx.strokeStyle = "rgba(255,255,255,.08)"; ctx.beginPath(); ctx.moveTo(x, y + bh / 2); ctx.lineTo(x + bw, y + bh / 2); ctx.stroke();
+        if (rnd() > .82) { ctx.fillStyle = "rgba(190,90,50,.55)"; ctx.fillRect(x + 4, y + 4, bw - 8, bh - 8); }
+        if (rnd() > .7) { ctx.fillStyle = "rgba(40,60,40,.7)"; ctx.beginPath(); ctx.arc(x + bw + 14, y + bh + 12, 10 + rnd() * 10, 0, 7); ctx.fill(); }
+      }
+    }
+    ctx.restore();
+    // grano
+    const g = ctx.createRadialGradient(r.width * .7, r.height * .3, 40, r.width * .7, r.height * .3, r.width);
+    g.addColorStop(0, "rgba(255,255,255,.04)"); g.addColorStop(1, "rgba(0,0,0,.35)");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, r.width, r.height);
+  }
+  draw(); let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(draw, 150); });
+})();
+
+/* ---- carrusel ---- */
+(function () {
+  const car = document.getElementById("carousel");
+  const step = () => (car.querySelector(".work").getBoundingClientRect().width + 20);
+  document.getElementById("prevBtn").addEventListener("click", () => car.scrollBy({ left: -step(), behavior: "smooth" }));
+  document.getElementById("nextBtn").addEventListener("click", () => car.scrollBy({ left: step(), behavior: "smooth" }));
+})();
+
+/* ---- WhatsApp ---- */
+(function () {
+  const f = document.getElementById("reqForm"), msg = document.getElementById("formMsg");
+  function link(texto) { return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(texto); }
+  function noNumber() { msg.className = "form-msg err"; msg.textContent = "El número de WhatsApp de MTS aún no está configurado en esta página."; }
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const nombre = f.nombre.value.trim();
+    if (!nombre) { msg.className = "form-msg err"; msg.textContent = "Escribe tu nombre para poder contactarte."; f.nombre.focus(); return; }
+    if (!WHATSAPP) return noNumber();
+    const texto = `Hola MTS Security, soy ${nombre}${f.comuna.value.trim() ? " de " + f.comuna.value.trim() : ""}. Necesito ${f.serv.value.toLowerCase()} para ${f.tipo.value.toLowerCase()}. ${f.msg.value.trim()}`;
+    msg.className = "form-msg";
+    msg.innerHTML = 'Mensaje listo. <a href="' + link(texto) + '" target="_blank" rel="noopener">Abrir WhatsApp para enviarlo</a>';
+  });
+  document.getElementById("waFloat").addEventListener("click", () => {
+    if (!WHATSAPP) { document.getElementById("contacto").scrollIntoView({ behavior: "smooth" }); noNumber(); return; }
+    const a = document.createElement("a"); a.href = link("Hola MTS Security, quiero cotizar."); a.target = "_blank"; a.rel = "noopener"; a.click();
+  });
+})();
+</script>
+
+</body>
+</html>
