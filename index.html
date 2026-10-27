@@ -169,12 +169,24 @@ section.alt { background: var(--bg-2); }
 
 
 .photo-marquee { margin-inline: calc(50% - 50vw); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
-.photo-track { display: flex; gap: 18px; width: max-content; animation: slide-photos 70s linear infinite; padding-block: 4px; }
+.photo-track { display: flex; gap: 18px; width: max-content; animation: slide-photos 70s linear infinite reverse; padding-block: 4px; }
 .photo-marquee:hover .photo-track, .photo-marquee:focus-within .photo-track { animation-play-state: paused; }
 .photo-track .shot { flex: none; width: 340px; aspect-ratio: 3 / 4; }
 @keyframes slide-photos { to { transform: translateX(calc(-50% - 9px)); } }
 @media (max-width: 560px) { .photo-track .shot { width: 250px; } .photo-track { gap: 12px; animation-duration: 55s; } @keyframes slide-photos { to { transform: translateX(calc(-50% - 6px)); } } }
 @media (prefers-reduced-motion: reduce) { .photo-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; margin-inline: 0; } .photo-track { animation: none; } .photo-track [aria-hidden="true"] { display: none; } }
+
+
+.client-marquee { margin-inline: calc(50% - 50vw); margin-bottom: 28px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.client-track { display: flex; gap: 18px; width: max-content; animation: slide-clients 45s linear infinite; }
+.client-marquee:hover .client-track { animation-play-state: paused; }
+.client-tile { flex: none; width: 220px; height: 130px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 14px 20px; }
+.client-tile img { max-width: 100%; max-height: 100px; width: auto; height: auto; object-fit: contain; display: block; }
+.client-tile.dark { background: #0E0E0E; }
+.client-tile.garden { background: #E8D6C8; }
+@keyframes slide-clients { to { transform: translateX(calc(-50% - 9px)); } }
+@media (max-width: 560px) { .client-tile { width: 160px; height: 100px; padding: 10px 14px; } .client-tile img { max-height: 78px; } .client-track { gap: 12px; } @keyframes slide-clients { to { transform: translateX(calc(-50% - 6px)); } } }
+@media (prefers-reduced-motion: reduce) { .client-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .client-track [aria-hidden="true"] { display: none; } .client-marquee { -webkit-mask-image: none; mask-image: none; margin-inline: 0; } }
 
 /* proceso */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; list-style: none; margin: 0; padding: 0; counter-reset: s; }
@@ -351,30 +363,62 @@ footer .brand img { width: 56px; }
       <div class="sec-head">
         <span class="eyebrow">Portafolio</span>
         <h2>Instalaciones que ya protegemos</h2>
-        <p class="lead">Trabajos reales de nuestro equipo en terreno: cámaras, control de acceso, cableado, enlaces y centrales de monitoreo.</p>
+        <p class="lead">Empresas, municipios e instituciones que confían en nosotros, y el trabajo real de nuestro equipo en terreno.</p>
+      </div>
+      <div class="client-marquee" aria-label="Clientes">
+        <div class="client-track">
+            <div class="client-tile "><img src="img/cliente-uc.webp" alt="Club Deportivo Universidad Católica" loading="lazy"></div>
+            <div class="client-tile "><img src="img/cliente-rios-cabrera.webp" alt="Ríos Cabrera Maestranza Metalúrgica" loading="lazy"></div>
+            <div class="client-tile "><img src="img/cliente-teno.webp" alt="Municipalidad de Teno" loading="lazy"></div>
+            <div class="client-tile garden"><img src="img/cliente-garden-inn.webp" alt="Residence Garden Inn" loading="lazy"></div>
+            <div class="client-tile "><img src="img/cliente-la-florida.webp" alt="Municipalidad de La Florida" loading="lazy"></div>
+            <div class="client-tile "><img src="img/cliente-dal.webp" alt="DAL Diseño Arquitectura Lugar" loading="lazy"></div>
+            <div class="client-tile dark"><img src="img/cliente-frenos-vergara.webp" alt="Frenos Vergara" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-uc.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-rios-cabrera.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-teno.webp" alt="" loading="lazy"></div>
+            <div class="client-tile garden" aria-hidden="true"><img src="img/cliente-garden-inn.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-la-florida.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-dal.webp" alt="" loading="lazy"></div>
+            <div class="client-tile dark" aria-hidden="true"><img src="img/cliente-frenos-vergara.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-uc.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-rios-cabrera.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-teno.webp" alt="" loading="lazy"></div>
+            <div class="client-tile garden" aria-hidden="true"><img src="img/cliente-garden-inn.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-la-florida.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-dal.webp" alt="" loading="lazy"></div>
+            <div class="client-tile dark" aria-hidden="true"><img src="img/cliente-frenos-vergara.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-uc.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-rios-cabrera.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-teno.webp" alt="" loading="lazy"></div>
+            <div class="client-tile garden" aria-hidden="true"><img src="img/cliente-garden-inn.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-la-florida.webp" alt="" loading="lazy"></div>
+            <div class="client-tile " aria-hidden="true"><img src="img/cliente-dal.webp" alt="" loading="lazy"></div>
+            <div class="client-tile dark" aria-hidden="true"><img src="img/cliente-frenos-vergara.webp" alt="" loading="lazy"></div>
+        </div>
       </div>
       <div class="photo-marquee" id="gallery">
         <div class="photo-track">
-          <button type="button" class="shot" data-full="img/central-monitoreo.webp" data-cap="Central de monitoreo multipantalla"><figure style="margin:0"><img src="img/central-monitoreo.webp" alt="Central de monitoreo multipantalla" loading="lazy" decoding="async"><figcaption>Central de monitoreo multipantalla</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/poste-camaras-enlace.webp" data-cap="Cámaras y enlace inalámbrico en poste"><figure style="margin:0"><img src="img/poste-camaras-enlace.webp" alt="Cámaras y enlace inalámbrico en poste" loading="lazy" decoding="async"><figcaption>Cámaras y enlace inalámbrico en poste</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/cerradura-magnetica.webp" data-cap="Instalación de cerradura electromagnética"><figure style="margin:0"><img src="img/cerradura-magnetica.webp" alt="Instalación de cerradura electromagnética" loading="lazy" decoding="async"><figcaption>Instalación de cerradura electromagnética</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/cableado-subterraneo.webp" data-cap="Tendido de cableado por cámara subterránea"><figure style="margin:0"><img src="img/cableado-subterraneo.webp" alt="Tendido de cableado por cámara subterránea" loading="lazy" decoding="async"><figcaption>Tendido de cableado por cámara subterránea</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/instalacion-altura.webp" data-cap="Instalación de domo PTZ en altura"><figure style="margin:0"><img src="img/instalacion-altura.webp" alt="Instalación de domo PTZ en altura" loading="lazy" decoding="async"><figcaption>Instalación de domo PTZ en altura</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/camara-fachada.webp" data-cap="Cámara exterior en fachada de edificio"><figure style="margin:0"><img src="img/camara-fachada.webp" alt="Cámara exterior en fachada de edificio" loading="lazy" decoding="async"><figcaption>Cámara exterior en fachada de edificio</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/rack-nvr.webp" data-cap="Ordenamiento de rack, switch y grabadores"><figure style="margin:0"><img src="img/rack-nvr.webp" alt="Ordenamiento de rack, switch y grabadores" loading="lazy" decoding="async"><figcaption>Ordenamiento de rack, switch y grabadores</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/ptz-dahua.webp" data-cap="Instalación de cámara PTZ en estructura metálica"><figure style="margin:0"><img src="img/ptz-dahua.webp" alt="Instalación de cámara PTZ en estructura metálica" loading="lazy" decoding="async"><figcaption>Instalación de cámara PTZ en estructura metálica</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/canalizacion-industrial.webp" data-cap="Canalización eléctrica en recinto industrial"><figure style="margin:0"><img src="img/canalizacion-industrial.webp" alt="Canalización eléctrica en recinto industrial" loading="lazy" decoding="async"><figcaption>Canalización eléctrica en recinto industrial</figcaption></figure></button>
-          <button type="button" class="shot" data-full="img/conexion-terreno.webp" data-cap="Conexión de equipos en terreno"><figure style="margin:0"><img src="img/conexion-terreno.webp" alt="Conexión de equipos en terreno" loading="lazy" decoding="async"><figcaption>Conexión de equipos en terreno</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/central-monitoreo.webp" data-cap="Central de monitoreo multipantalla"><figure style="margin:0"><img src="img/central-monitoreo.webp" alt="" loading="lazy" decoding="async"><figcaption>Central de monitoreo multipantalla</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/poste-camaras-enlace.webp" data-cap="Cámaras y enlace inalámbrico en poste"><figure style="margin:0"><img src="img/poste-camaras-enlace.webp" alt="" loading="lazy" decoding="async"><figcaption>Cámaras y enlace inalámbrico en poste</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/cerradura-magnetica.webp" data-cap="Instalación de cerradura electromagnética"><figure style="margin:0"><img src="img/cerradura-magnetica.webp" alt="" loading="lazy" decoding="async"><figcaption>Instalación de cerradura electromagnética</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/cableado-subterraneo.webp" data-cap="Tendido de cableado por cámara subterránea"><figure style="margin:0"><img src="img/cableado-subterraneo.webp" alt="" loading="lazy" decoding="async"><figcaption>Tendido de cableado por cámara subterránea</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/instalacion-altura.webp" data-cap="Instalación de domo PTZ en altura"><figure style="margin:0"><img src="img/instalacion-altura.webp" alt="" loading="lazy" decoding="async"><figcaption>Instalación de domo PTZ en altura</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/camara-fachada.webp" data-cap="Cámara exterior en fachada de edificio"><figure style="margin:0"><img src="img/camara-fachada.webp" alt="" loading="lazy" decoding="async"><figcaption>Cámara exterior en fachada de edificio</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/rack-nvr.webp" data-cap="Ordenamiento de rack, switch y grabadores"><figure style="margin:0"><img src="img/rack-nvr.webp" alt="" loading="lazy" decoding="async"><figcaption>Ordenamiento de rack, switch y grabadores</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/ptz-dahua.webp" data-cap="Instalación de cámara PTZ en estructura metálica"><figure style="margin:0"><img src="img/ptz-dahua.webp" alt="" loading="lazy" decoding="async"><figcaption>Instalación de cámara PTZ en estructura metálica</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/canalizacion-industrial.webp" data-cap="Canalización eléctrica en recinto industrial"><figure style="margin:0"><img src="img/canalizacion-industrial.webp" alt="" loading="lazy" decoding="async"><figcaption>Canalización eléctrica en recinto industrial</figcaption></figure></button>
-          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/conexion-terreno.webp" data-cap="Conexión de equipos en terreno"><figure style="margin:0"><img src="img/conexion-terreno.webp" alt="" loading="lazy" decoding="async"><figcaption>Conexión de equipos en terreno</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/central-monitoreo.webp" data-cap="Central de monitoreo multipantalla"><figure style="margin:0"><img src="img/central-monitoreo.webp" alt="Central de monitoreo multipantalla" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/poste-camaras-enlace.webp" data-cap="Cámaras y enlace inalámbrico en poste"><figure style="margin:0"><img src="img/poste-camaras-enlace.webp" alt="Cámaras y enlace inalámbrico en poste" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/cerradura-magnetica.webp" data-cap="Instalación de cerradura electromagnética"><figure style="margin:0"><img src="img/cerradura-magnetica.webp" alt="Instalación de cerradura electromagnética" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/cableado-subterraneo.webp" data-cap="Tendido de cableado por cámara subterránea"><figure style="margin:0"><img src="img/cableado-subterraneo.webp" alt="Tendido de cableado por cámara subterránea" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/instalacion-altura.webp" data-cap="Instalación de domo PTZ en altura"><figure style="margin:0"><img src="img/instalacion-altura.webp" alt="Instalación de domo PTZ en altura" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/camara-fachada.webp" data-cap="Cámara exterior en fachada de edificio"><figure style="margin:0"><img src="img/camara-fachada.webp" alt="Cámara exterior en fachada de edificio" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/rack-nvr.webp" data-cap="Ordenamiento de rack, switch y grabadores"><figure style="margin:0"><img src="img/rack-nvr.webp" alt="Ordenamiento de rack, switch y grabadores" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/ptz-dahua.webp" data-cap="Instalación de cámara PTZ en estructura metálica"><figure style="margin:0"><img src="img/ptz-dahua.webp" alt="Instalación de cámara PTZ en estructura metálica" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/canalizacion-industrial.webp" data-cap="Canalización eléctrica en recinto industrial"><figure style="margin:0"><img src="img/canalizacion-industrial.webp" alt="Canalización eléctrica en recinto industrial" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" data-full="img/conexion-terreno.webp" data-cap="Conexión de equipos en terreno"><figure style="margin:0"><img src="img/conexion-terreno.webp" alt="Conexión de equipos en terreno" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/central-monitoreo.webp" data-cap="Central de monitoreo multipantalla"><figure style="margin:0"><img src="img/central-monitoreo.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/poste-camaras-enlace.webp" data-cap="Cámaras y enlace inalámbrico en poste"><figure style="margin:0"><img src="img/poste-camaras-enlace.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/cerradura-magnetica.webp" data-cap="Instalación de cerradura electromagnética"><figure style="margin:0"><img src="img/cerradura-magnetica.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/cableado-subterraneo.webp" data-cap="Tendido de cableado por cámara subterránea"><figure style="margin:0"><img src="img/cableado-subterraneo.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/instalacion-altura.webp" data-cap="Instalación de domo PTZ en altura"><figure style="margin:0"><img src="img/instalacion-altura.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/camara-fachada.webp" data-cap="Cámara exterior en fachada de edificio"><figure style="margin:0"><img src="img/camara-fachada.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/rack-nvr.webp" data-cap="Ordenamiento de rack, switch y grabadores"><figure style="margin:0"><img src="img/rack-nvr.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/ptz-dahua.webp" data-cap="Instalación de cámara PTZ en estructura metálica"><figure style="margin:0"><img src="img/ptz-dahua.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/canalizacion-industrial.webp" data-cap="Canalización eléctrica en recinto industrial"><figure style="margin:0"><img src="img/canalizacion-industrial.webp" alt="" loading="lazy" decoding="async"></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/conexion-terreno.webp" data-cap="Conexión de equipos en terreno"><figure style="margin:0"><img src="img/conexion-terreno.webp" alt="" loading="lazy" decoding="async"></figure></button>
         </div>
       </div>
     </div>
@@ -433,7 +477,7 @@ footer .brand img { width: 56px; }
 
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Foto ampliada">
   <button class="icon-btn" id="lbClose" type="button" aria-label="Cerrar foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <figure><img id="lbImg" alt=""><p id="lbCap"></p></figure>
+  <figure><img id="lbImg" alt=""></figure>
 </div>
 
 <button class="wa-float" id="waFloat" type="button" aria-label="Escribir por WhatsApp">
@@ -490,12 +534,12 @@ const WHATSAPP = "56974425801";
 
 /* ---- galería ---- */
 (function () {
-  const lb = document.getElementById("lightbox"), img = document.getElementById("lbImg"), cap = document.getElementById("lbCap");
+  const lb = document.getElementById("lightbox"), img = document.getElementById("lbImg");
   let last = null;
   const close = () => { lb.hidden = true; img.removeAttribute("src"); if (last) last.focus(); };
   document.getElementById("gallery").addEventListener("click", e => {
     const b = e.target.closest(".shot"); if (!b) return;
-    last = b; img.src = b.dataset.full; img.alt = b.dataset.cap; cap.textContent = b.dataset.cap; lb.hidden = false;
+    last = b; img.src = b.dataset.full; img.alt = b.dataset.cap; lb.hidden = false;
     document.getElementById("lbClose").focus();
   });
   document.getElementById("lbClose").addEventListener("click", close);
