@@ -54,7 +54,7 @@ p { margin: 0; }
 header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: #0E1626; border-bottom: 1px solid #26334B; color: #F2F5FA; }
 .top .wrap { display: flex; align-items: center; gap: 20px; padding-block: 12px; }
 .brand { display: flex; align-items: center; gap: 12px; white-space: nowrap; text-decoration: none; font-family: var(--f-head); font-weight: 600; font-size: 21px; letter-spacing: .01em; }
-.brand img { width: 50px; height: auto; display: block; }
+.brand img { width: 66px; height: auto; display: block; }
 .nav { display: flex; gap: 26px; margin-left: auto; }
 .nav a { text-decoration: none; font-size: 15px; color: #A3AFC2; }
 .nav a:hover { color: #FFFFFF; }
@@ -136,6 +136,46 @@ section.alt { background: var(--bg-2); }
 .car-ctrl button:hover { border-color: var(--accent); }
 .car-ctrl svg { width: 18px; height: 18px; }
 
+
+/* marcas */
+.brands { padding-block: 56px; border-block: 1px solid var(--line); overflow: hidden; }
+.brands .sec-head { margin-bottom: 28px; text-align: center; justify-items: center; }
+.marquee { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; gap: 22px; width: max-content; animation: slide 40s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.brand-tile { flex: none; width: 200px; height: 96px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 16px 22px; }
+.brand-tile img { max-width: 100%; max-height: 62px; width: auto; height: auto; object-fit: contain; display: block; }
+.brand-tile.fluke { background: rgb(246, 178, 7); }
+.brand-tile.hik { background: #000000; }
+@keyframes slide { to { transform: translateX(calc(-50% - 11px)); } }
+@media (max-width: 560px) { .brand-tile { width: 150px; height: 76px; padding: 12px 16px; } .brand-tile img { max-height: 48px; } .marquee-track { gap: 14px; } @keyframes slide { to { transform: translateX(calc(-50% - 7px)); } } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .marquee-track [aria-hidden="true"] { display: none; } .marquee { -webkit-mask-image: none; mask-image: none; } }
+
+/* galería */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-flow: dense; gap: 14px; }
+.shot { position: relative; margin: 0; border-radius: 14px; overflow: hidden; background: var(--card); aspect-ratio: 3 / 4; max-width: 100%; cursor: zoom-in; border: 0; padding: 0; color: inherit; text-align: left; font: inherit; }
+.shot.big { grid-column: span 2; grid-row: span 2; aspect-ratio: 3 / 4; }
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.shot:hover img { transform: scale(1.04); }
+.shot figcaption { position: absolute; inset: auto 0 0 0; padding: 50px 18px 16px; font-size: 16px !important; background: linear-gradient(0deg, rgba(8,12,22,.88), transparent); color: #F2F5FA; font-size: 14px; font-weight: 500; line-height: 1.35; }
+.shot.big figcaption { font-size: 16px; padding: 60px 20px 18px; }
+@media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .gallery { gap: 10px; } .shot figcaption { font-size: 12.5px; padding: 30px 10px 9px; } }
+.lightbox { position: fixed; inset: 0; z-index: 80; background: rgba(5, 8, 15, .92); display: grid; place-items: center; padding: calc(56px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lightbox img { max-width: min(100%, 960px); max-height: 82vh; border-radius: 10px; }
+.lightbox p { color: #E8EEF9; margin-top: 12px; text-align: center; }
+.lightbox figure { margin: 0; display: grid; justify-items: center; }
+.lightbox .icon-btn { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); background: rgba(14,22,38,.8); }
+
+
+.photo-marquee { margin-inline: calc(50% - 50vw); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.photo-track { display: flex; gap: 18px; width: max-content; animation: slide-photos 70s linear infinite; padding-block: 4px; }
+.photo-marquee:hover .photo-track, .photo-marquee:focus-within .photo-track { animation-play-state: paused; }
+.photo-track .shot { flex: none; width: 340px; aspect-ratio: 3 / 4; }
+@keyframes slide-photos { to { transform: translateX(calc(-50% - 9px)); } }
+@media (max-width: 560px) { .photo-track .shot { width: 250px; } .photo-track { gap: 12px; animation-duration: 55s; } @keyframes slide-photos { to { transform: translateX(calc(-50% - 6px)); } } }
+@media (prefers-reduced-motion: reduce) { .photo-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; margin-inline: 0; } .photo-track { animation: none; } .photo-track [aria-hidden="true"] { display: none; } }
+
 /* proceso */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; list-style: none; margin: 0; padding: 0; counter-reset: s; }
 .steps li { counter-increment: s; border-top: 2px solid var(--line); padding-top: 20px; display: grid; gap: 8px; align-content: start; }
@@ -168,7 +208,7 @@ textarea { min-height: 110px; resize: vertical; }
 footer { background: #0A101C; color: #A3AFC2; }
 footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding-block: 32px calc(32px + 70px); font-size: 14px; }
 footer .brand { color: #F2F5FA; font-size: 18px; }
-footer .brand img { width: 40px; }
+footer .brand img { width: 56px; }
 
 .wa-float { position: fixed; z-index: 40; right: max(20px, calc(env(safe-area-inset-right, 0px) + 12px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: 64px; height: 64px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; box-shadow: 0 10px 28px -8px rgba(37, 211, 102, .6); text-decoration: none; border: 0; cursor: pointer; }
 .wa-float::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--wa); opacity: .4; animation: ring 2.4s ease-out infinite; }
@@ -179,16 +219,17 @@ footer .brand img { width: 40px; }
 <meta property="og:title" content="MTS Security · Seguridad electrónica">
 <meta property="og:description" content="Soluciones TI e instalaciones de seguridad electrónica: cámaras, alarmas, control de acceso y automatización. Cobertura en todo Chile.">
 <meta property="og:url" content="https://mts-security.cl/">
+<meta property="og:image" content="https://mts-security.cl/img/logo.png">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://mts-security.cl/">
-<link rel="icon" type="image/webp" href="logo.webp">
-<link rel="apple-touch-icon" href="logo.webp">
-<style>body{margin:0}img{max-width:100%}</style>
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="apple-touch-icon" href="img/logo.png">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="MTS Security, inicio"><img src="logo.webp" alt="Logo MTS Security">MTS SECURITY</a>
+    <a class="brand" href="#inicio" aria-label="MTS Security, inicio"><img src="img/logo.webp" alt="Logo MTS Security">MTS SECURITY</a>
     <nav class="nav" aria-label="Secciones">
       <a href="#servicios">Servicios</a>
       <a href="#portafolio">Portafolio</a>
@@ -256,34 +297,85 @@ footer .brand img { width: 40px; }
     </div>
   </section>
 
+  <section class="brands" id="marcas" aria-label="Marcas con las que trabajamos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Marcas</span>
+        <h2>Trabajamos con marcas líderes</h2>
+      </div>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+            <div class="brand-tile hik"None><img src="img/marca-hikvision.webp" alt="Hikvision" loading="lazy"></div>
+            <div class="brand-tile "None><img src="img/marca-dahua.webp" alt="Dahua Technology" loading="lazy"></div>
+            <div class="brand-tile "None><img src="img/marca-tplink.webp" alt="TP-Link" loading="lazy"></div>
+            <div class="brand-tile "><img src="img/marca-ubiquiti.webp" alt="Ubiquiti Networks" loading="lazy"></div>
+            <div class="brand-tile "><img src="img/marca-imou.webp" alt="IMOU" loading="lazy"></div>
+            <div class="brand-tile fluke"><img src="img/marca-fluke.webp" alt="Fluke" loading="lazy"></div>
+            <div class="brand-tile hik" aria-hidden="true"><img src="img/marca-hikvision.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-dahua.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-tplink.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-ubiquiti.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-imou.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile fluke" aria-hidden="true"><img src="img/marca-fluke.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile hik" aria-hidden="true"><img src="img/marca-hikvision.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-dahua.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-tplink.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-ubiquiti.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-imou.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile fluke" aria-hidden="true"><img src="img/marca-fluke.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile hik" aria-hidden="true"><img src="img/marca-hikvision.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-dahua.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-tplink.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-ubiquiti.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-imou.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile fluke" aria-hidden="true"><img src="img/marca-fluke.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile hik" aria-hidden="true"><img src="img/marca-hikvision.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-dahua.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-tplink.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-ubiquiti.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-imou.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile fluke" aria-hidden="true"><img src="img/marca-fluke.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile hik" aria-hidden="true"><img src="img/marca-hikvision.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-dahua.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-tplink.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-ubiquiti.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile " aria-hidden="true"><img src="img/marca-imou.webp" alt="" loading="lazy"></div>
+            <div class="brand-tile fluke" aria-hidden="true"><img src="img/marca-fluke.webp" alt="" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="block alt" id="portafolio">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Portafolio</span>
         <h2>Instalaciones que ya protegemos</h2>
-        <p class="lead">Casas, locales y bodegas donde ya instalamos cámaras, alarmas o control de acceso.</p>
+        <p class="lead">Trabajos reales de nuestro equipo en terreno: cámaras, control de acceso, cableado, enlaces y centrales de monitoreo.</p>
       </div>
-      <div class="carousel" id="carousel" tabindex="0" aria-label="Trabajos realizados">
-        <article class="work">
-          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(4,1fr)"><i data-c="CAM01"></i><i data-c="CAM02"></i><i data-c="CAM03"></i><i data-c="CAM04"></i><i data-c="CAM05"></i><i data-c="CAM06"></i><i data-c="CAM07"></i><i data-c="CAM08"></i><i data-c="CAM09"></i><i data-c="CAM10"></i><i data-c="CAM11"></i><i data-c="CAM12"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
-          <div class="work-body"><h3>Central de Monitoreo Multipantalla</h3><p>Configuración de matrices de cámaras para la supervisión simultánea de múltiples puntos críticos, optimizando la capacidad de reacción ante cualquier evento.</p></div>
-        </article>
-        <article class="work">
-          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(2,1fr)"><i data-c="ACCESO"></i><i data-c="PATIO"></i><i data-c="ESTAC."></i><i data-c="LIVING"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
-          <div class="work-body"><h3>Monitoreo residencial y vehicular</h3><p>Integración de cámaras interiores y exteriores con vista del acceso vehicular, para control total desde el celular.</p></div>
-        </article>
-        <article class="work">
-          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(3,1fr)"><i data-c="P1"></i><i data-c="P2"></i><i data-c="P3"></i><i data-c="P4"></i><i data-c="P5"></i><i data-c="P6"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
-          <div class="work-body"><h3>Estacionamientos y puntos ciegos</h3><p>Cámaras en postes con gabinete, switch y enlace inalámbrico, integradas al sistema de grabación existente.</p></div>
-        </article>
-        <article class="work">
-          <div class="work-img"><div class="mv" style="grid-template-columns:repeat(2,1fr)"><i data-c="BODEGA 1"></i><i data-c="BODEGA 2"></i><i data-c="ANDÉN"></i><i data-c="OFICINA"></i></div><span class="mv-tag">FOTO PENDIENTE</span></div>
-          <div class="work-body"><h3>Bodegas y locales comerciales</h3><p>Cobertura de accesos, cajas y zonas de carga, con alarma conectada y aviso inmediato fuera de horario.</p></div>
-        </article>
-      </div>
-      <div class="car-ctrl">
-        <button type="button" id="prevBtn" aria-label="Trabajo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <button type="button" id="nextBtn" aria-label="Trabajo siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      <div class="photo-marquee" id="gallery">
+        <div class="photo-track">
+          <button type="button" class="shot" data-full="img/central-monitoreo.webp" data-cap="Central de monitoreo multipantalla"><figure style="margin:0"><img src="img/central-monitoreo.webp" alt="Central de monitoreo multipantalla" loading="lazy" decoding="async"><figcaption>Central de monitoreo multipantalla</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/poste-camaras-enlace.webp" data-cap="Cámaras y enlace inalámbrico en poste"><figure style="margin:0"><img src="img/poste-camaras-enlace.webp" alt="Cámaras y enlace inalámbrico en poste" loading="lazy" decoding="async"><figcaption>Cámaras y enlace inalámbrico en poste</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/cerradura-magnetica.webp" data-cap="Instalación de cerradura electromagnética"><figure style="margin:0"><img src="img/cerradura-magnetica.webp" alt="Instalación de cerradura electromagnética" loading="lazy" decoding="async"><figcaption>Instalación de cerradura electromagnética</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/cableado-subterraneo.webp" data-cap="Tendido de cableado por cámara subterránea"><figure style="margin:0"><img src="img/cableado-subterraneo.webp" alt="Tendido de cableado por cámara subterránea" loading="lazy" decoding="async"><figcaption>Tendido de cableado por cámara subterránea</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/instalacion-altura.webp" data-cap="Instalación de domo PTZ en altura"><figure style="margin:0"><img src="img/instalacion-altura.webp" alt="Instalación de domo PTZ en altura" loading="lazy" decoding="async"><figcaption>Instalación de domo PTZ en altura</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/camara-fachada.webp" data-cap="Cámara exterior en fachada de edificio"><figure style="margin:0"><img src="img/camara-fachada.webp" alt="Cámara exterior en fachada de edificio" loading="lazy" decoding="async"><figcaption>Cámara exterior en fachada de edificio</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/rack-nvr.webp" data-cap="Ordenamiento de rack, switch y grabadores"><figure style="margin:0"><img src="img/rack-nvr.webp" alt="Ordenamiento de rack, switch y grabadores" loading="lazy" decoding="async"><figcaption>Ordenamiento de rack, switch y grabadores</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/ptz-dahua.webp" data-cap="Instalación de cámara PTZ en estructura metálica"><figure style="margin:0"><img src="img/ptz-dahua.webp" alt="Instalación de cámara PTZ en estructura metálica" loading="lazy" decoding="async"><figcaption>Instalación de cámara PTZ en estructura metálica</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/canalizacion-industrial.webp" data-cap="Canalización eléctrica en recinto industrial"><figure style="margin:0"><img src="img/canalizacion-industrial.webp" alt="Canalización eléctrica en recinto industrial" loading="lazy" decoding="async"><figcaption>Canalización eléctrica en recinto industrial</figcaption></figure></button>
+          <button type="button" class="shot" data-full="img/conexion-terreno.webp" data-cap="Conexión de equipos en terreno"><figure style="margin:0"><img src="img/conexion-terreno.webp" alt="Conexión de equipos en terreno" loading="lazy" decoding="async"><figcaption>Conexión de equipos en terreno</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/central-monitoreo.webp" data-cap="Central de monitoreo multipantalla"><figure style="margin:0"><img src="img/central-monitoreo.webp" alt="" loading="lazy" decoding="async"><figcaption>Central de monitoreo multipantalla</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/poste-camaras-enlace.webp" data-cap="Cámaras y enlace inalámbrico en poste"><figure style="margin:0"><img src="img/poste-camaras-enlace.webp" alt="" loading="lazy" decoding="async"><figcaption>Cámaras y enlace inalámbrico en poste</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/cerradura-magnetica.webp" data-cap="Instalación de cerradura electromagnética"><figure style="margin:0"><img src="img/cerradura-magnetica.webp" alt="" loading="lazy" decoding="async"><figcaption>Instalación de cerradura electromagnética</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/cableado-subterraneo.webp" data-cap="Tendido de cableado por cámara subterránea"><figure style="margin:0"><img src="img/cableado-subterraneo.webp" alt="" loading="lazy" decoding="async"><figcaption>Tendido de cableado por cámara subterránea</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/instalacion-altura.webp" data-cap="Instalación de domo PTZ en altura"><figure style="margin:0"><img src="img/instalacion-altura.webp" alt="" loading="lazy" decoding="async"><figcaption>Instalación de domo PTZ en altura</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/camara-fachada.webp" data-cap="Cámara exterior en fachada de edificio"><figure style="margin:0"><img src="img/camara-fachada.webp" alt="" loading="lazy" decoding="async"><figcaption>Cámara exterior en fachada de edificio</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/rack-nvr.webp" data-cap="Ordenamiento de rack, switch y grabadores"><figure style="margin:0"><img src="img/rack-nvr.webp" alt="" loading="lazy" decoding="async"><figcaption>Ordenamiento de rack, switch y grabadores</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/ptz-dahua.webp" data-cap="Instalación de cámara PTZ en estructura metálica"><figure style="margin:0"><img src="img/ptz-dahua.webp" alt="" loading="lazy" decoding="async"><figcaption>Instalación de cámara PTZ en estructura metálica</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/canalizacion-industrial.webp" data-cap="Canalización eléctrica en recinto industrial"><figure style="margin:0"><img src="img/canalizacion-industrial.webp" alt="" loading="lazy" decoding="async"><figcaption>Canalización eléctrica en recinto industrial</figcaption></figure></button>
+          <button type="button" class="shot" aria-hidden="true" tabindex="-1" data-full="img/conexion-terreno.webp" data-cap="Conexión de equipos en terreno"><figure style="margin:0"><img src="img/conexion-terreno.webp" alt="" loading="lazy" decoding="async"><figcaption>Conexión de equipos en terreno</figcaption></figure></button>
+        </div>
       </div>
     </div>
   </section>
@@ -333,11 +425,16 @@ footer .brand img { width: 40px; }
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#inicio"><img src="logo.webp" alt="">MTS SECURITY</a>
+    <a class="brand" href="#inicio"><img src="img/logo.webp" alt="">MTS SECURITY</a>
     <span>MTS SECURITY SPA · Cobertura en todo Chile</span>
     <span>contacto@mts-securitychile.cl · +56 9 7442 5801 · © 2026</span>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-label="Foto ampliada">
+  <button class="icon-btn" id="lbClose" type="button" aria-label="Cerrar foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <figure><img id="lbImg" alt=""><p id="lbCap"></p></figure>
+</div>
 
 <button class="wa-float" id="waFloat" type="button" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1121 11.5z"/></svg>
@@ -391,12 +488,19 @@ const WHATSAPP = "56974425801";
   draw(); let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(draw, 150); });
 })();
 
-/* ---- carrusel ---- */
+/* ---- galería ---- */
 (function () {
-  const car = document.getElementById("carousel");
-  const step = () => (car.querySelector(".work").getBoundingClientRect().width + 20);
-  document.getElementById("prevBtn").addEventListener("click", () => car.scrollBy({ left: -step(), behavior: "smooth" }));
-  document.getElementById("nextBtn").addEventListener("click", () => car.scrollBy({ left: step(), behavior: "smooth" }));
+  const lb = document.getElementById("lightbox"), img = document.getElementById("lbImg"), cap = document.getElementById("lbCap");
+  let last = null;
+  const close = () => { lb.hidden = true; img.removeAttribute("src"); if (last) last.focus(); };
+  document.getElementById("gallery").addEventListener("click", e => {
+    const b = e.target.closest(".shot"); if (!b) return;
+    last = b; img.src = b.dataset.full; img.alt = b.dataset.cap; cap.textContent = b.dataset.cap; lb.hidden = false;
+    document.getElementById("lbClose").focus();
+  });
+  document.getElementById("lbClose").addEventListener("click", close);
+  lb.addEventListener("click", e => { if (e.target === lb) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) close(); });
 })();
 
 /* ---- WhatsApp ---- */
